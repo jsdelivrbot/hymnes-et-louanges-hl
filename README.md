@@ -1,6 +1,12 @@
 # hymnes-et-louanges
 A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.
 
+### Frontend Url
+[See live](https://apps.wspecs.com)
+
+### Api Url
+[See Endpoints](http://api.wspecs.com/hl)
+
 ## Imported NPM modules
 
 * [fs](https://www.npmjs.com/package/fs) 
