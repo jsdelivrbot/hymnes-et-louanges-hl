@@ -1,0 +1,39 @@
++keyframes(reveal_right)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateX(10%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateX(0))
+
++keyframes(reveal_left)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateX(-20%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateX(0))
+
++keyframes(reveal_top)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateY(-10%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateY(0))
+
++keyframes(reveal_bottom)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateY(10%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateY(0))
+
++keyframes(reveal_within)
+  0%
+    opacity: 0
+    +cross_browsers(transform, scale(0.4))
+  100%
+    opacity: 1
+    +cross_browsers(transform, scale(1))

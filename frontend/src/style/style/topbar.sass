@@ -1,0 +1,58 @@
+$height: 56px
+$fontsize: $height/2.7
+$svg_width: 24px
+$margin: (($height - $svg_width)/2)
+$background: black
+
+.bar
+  height: 4px
+  width: 100%
+  background: $background
+.topbar
+  +transition(.5s)
+  width: 100%
+  background: $background
+  height: $height
+  transform: translate(0, -$height + 4px)
+  padding: $margin $svg_width
+  position: fixed
+  &.full
+    +elevate_2dp()
+    +transition(.5s)
+    transform: translate(0, 0)
+  &.stick
+    transform: translate(0, 0)
+  svg
+    width: $svg_width
+    height: $svg_width
+    fill: white
+    cursor: pointer
+    &.menu-icon
+      margin-right: $margin
+  .title
+    color: white
+    font-size: $fontsize
+    vertical-align: middle
+  .searchbox
+    display: none
+    float: right
+    width: 0%
+    svg
+      fill: #555
+    input
+      vertical-align: top
+      width: calc(100% - 100px)
+      padding: 0 16px
+      +mobile_ready(font-size, $fontsize, $fontsize - 1px)
+      border: none
+  &.search
+    +transition(0.5s)
+    background: #eee
+    .left, .right, .title
+      display: none
+    .searchbox
+      display: block
+      padding-left: $svg_width
+      width: 100%
+      +breakpoint(mobile)
+        padding-left: 0

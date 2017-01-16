@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+<body>
+  <h3><%- request %> <%- endpoint %></h3>
+  <% if (response) { %>
+  <pre>
+<%- response %>
+  </pre>
+  <% } else { %>
+  <% } %>
+</body>
+</html>

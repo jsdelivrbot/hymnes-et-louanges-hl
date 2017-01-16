@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+<body>
+  <h3><%- title %></h3>
+  <ul>
+  <% (endpoints.get || []).forEach(function(url) { %>
+    <% request = 'GET' %>
+    <li>
+      <a target="_self" href="?endpoint=<%- url.path %>&request=<%- request %>">
+        <%- request %> <%- url.path %>
+      </a>
+    </li>
+  <% }) %>
+  <ul>
+</body>
+</html>

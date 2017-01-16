@@ -1,0 +1,7 @@
+{
+  "port": 7212,
+  "col": "hl",
+  "files": "uploads/",
+  "path": "/hl",
+  "info": "REST api for hl"
+}

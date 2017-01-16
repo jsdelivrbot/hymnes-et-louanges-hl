@@ -33,4 +33,3 @@ A virtual hymnbook use by french-speaking adventist churches. The application co
 
 ## License
 [Apache](LICENSE)
-# hymnes-et-louanges-hl

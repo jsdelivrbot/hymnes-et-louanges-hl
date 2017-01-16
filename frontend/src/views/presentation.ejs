@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+  <% include partials/head %>
+  <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/league.css"-->
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <section data-autoslide="900">
+          <h1>Hymnes &amp; Louanges</h1>
+        </section>
+        <!--section data-background="#363738"-->
+        <% for (var s in slides) { %>
+          <% var song = slides[s] %>
+          <section>
+            <h2><%- song.title %></h2>
+            <div class="separator"></div>
+            <h3><%- song.number %></h3>
+          </section>
+          <% for (var w in song.slides) { %>
+            <% var key = song.slides[w] %>
+            <section>
+              <h3><%- key[0].toUpperCase() + String(key).substr(1).replace('_', ' ') %></h3>
+              <% for (var line in song[key]) { %>
+                <p><%- song[key][line] %></p>
+              <% } %>
+            </section>
+          <% } %>
+        <% } %>
+        <section class="fin">
+          <h2>Fin</h2>
+          <p>Hymnes &amp; Louanges</p>
+          <div class="separator"></div>
+          <p class="icons">
+            <% if (number > 1) { %>
+              <a class="action" href="presentation/<%- number - 1 %>" target="_self">
+                <svg class="menu">
+                  <use xlink:href="img/defs.svg#prev" />
+                </svg>
+              </a>
+            <% } %>
+            <a class="action" href="chant/<%- number %>" target="_self">
+              <svg class="menu">
+                <use xlink:href="img/defs.svg#menu" />
+              </svg>
+            </a>
+            <% if (number < 654) { %>
+              <a class="action" href="presentation/<%- number + 1 %>" target="_self">
+                <svg class="menu">
+                  <use xlink:href="img/defs.svg#next" />
+                </svg>
+              </a>
+            <% } %>
+          </p>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+    Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      center: true,
+      transition: 'zoom',
+      dependencies: []
+    });
+  </script>
+</body>
+</html>

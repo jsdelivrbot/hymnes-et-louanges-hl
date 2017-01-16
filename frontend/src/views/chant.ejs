@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <% include partials/head %>
+<body>
+  <% include partials/appbar %>
+
+<div class="page hl-song">
+  <h3 class="hl-song-title">
+    <span class="number"> <%- song.number %></span> - <%- song.title %>
+  </h3>
+  <% for (var x in song.parts) { %>
+    <% var key = song.parts[x] %>
+    <h4><%- key[0].toUpperCase() + String(key).substr(1).replace('_', ' ') %></h4>
+    <% for (var line in song[key]) { %>
+      <p><%- song[key][line] %></p>
+    <% } %>
+  <% } %>
+
+  <div class="floating-menu">
+    <div class="top">
+    </div>
+    <div class="line">
+      <% if (song.number > 1) { %>
+        <a class="action" href="chant/<%- song.number - 1 %>" target="_self">
+          <svg class="menu">
+            <use xlink:href="img/defs.svg#prev" />
+          </svg>
+        </a>
+      <% } %>
+
+      <a class="action" href="presentation/<%- song.number %>" target="_self">
+        <svg class="menu">
+          <use xlink:href="img/defs.svg#fullscreen" />
+        </svg>
+      </a>
+
+      <% if (song.number < 654) { %>
+        <a class="action" href="chant/<%- song.number + 1 %>" target="_self">
+          <svg class="menu">
+            <use xlink:href="img/defs.svg#next" />
+          </svg>
+        </a>
+      <% } %>
+    </div>
+
+    <button class="main">
+      <svg class="menu">
+        <use xlink:href="img/defs.svg#menu2" />
+      </svg>
+    </button>
+  </div>
+
+  <% include partials/script%>
+</body>
+</html>

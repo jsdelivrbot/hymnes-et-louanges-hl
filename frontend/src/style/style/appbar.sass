@@ -1,0 +1,85 @@
+.stick-top
+  z-index: 4
+  position: fixed
+  top: 0px
+  +transition(0.5s)
+  +shadow()
+
+.appbar
+  +transition(0.5s)
+  width: 100%
+  background: black
+  height: 64px
+  padding: 20px 24px
+  svg
+    width: 24px
+    height: 24px
+    fill: white
+    cursor: pointer
+  .title
+    padding-left: 24px
+    color: white
+    font-size: 20px
+  .searchbox
+    display: none
+    float: right
+    width: 0%
+    svg
+      fill: #555
+    input
+      vertical-align: top
+      width: calc(100% - 100px)
+      padding: 0 16px
+      +mobile_ready(font-size, 20px, 16px)
+      border: none
+
+  &.search
+    +transition(0.5s)
+    background: #eee
+    .left, .right, .title
+      display: none
+    .searchbox
+      display: block
+      padding-left: 24px
+      width: 100%
+      +breakpoint(mobile)
+        padding-left: 0
+
+.sidebar
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 0
+  z-index: 6
+  background: transparent
+  display: none
+  +transition(0.5s)
+  &.open
+    display: block
+    background: rgba(0, 0, 0, 0.25)
+    width: 100%
+    +transition(0.2s)
+    .menu
+      +transition(0.5s)
+      width: 240px
+
+  .menu
+    +transition(0.2s)
+    z-index: 7
+    width: 0px
+    height: 100%
+    background: white
+    .title
+      padding: 20px
+      +cross_browsers(border-bottom, 1px solid #ccc)
+      a
+        font-size: 20px
+        font-weight: bold
+    .links
+      padding: 10px 0 20px 0
+      a
+        font-weight: bold
+        font-size: 13px
+        display: block
+        padding: 12px 20px

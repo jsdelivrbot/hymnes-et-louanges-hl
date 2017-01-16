@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+<body>
+  <h3><%- title %></h3>
+  <div class="form">
+    <% fields.forEach(function(field) { %>
+      <div class="float-input-small">
+        <input id="<%- field %>" type="text" required />
+        <label><%- field %></label>
+        <span></span>
+      </div>
+    <% }) %>
+  </div>
+  <button>Submit</button>
+  <script>
+    window.appInputs = <%- JSON.stringify(fields) %>;
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.row
+  width: 100%
+.row:after
+  content: ""
+  clear: both
+  display: block
+
+[class*="col"]
+  float: left
+  +responsive('padding', 15px, 1.2)
+

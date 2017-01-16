@@ -1,0 +1,125 @@
+body {
+  background: #EEE;
+  font-family: "Verdana", Verdana, sans-serif;
+  padding: 24px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 12px;
+  margin: 0;
+  background: #eee;
+  cursor: pointer
+}
+ul li:nth-child(2n) {
+  background: transparent
+}
+
+pre, code {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  webkit-box-sizing:border-box;
+  display:block; 
+  white-space: pre-wrap;  
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap; 
+  white-space: -o-pre-wrap; 
+  word-wrap: break-word; 
+  width:100%;
+  overflow-x:auto;
+  border: 1px solid black;
+  border-radius: 4px;
+  background: #CFD8DC;
+  padding: 32px;
+}
+
+.form {
+  margin-top: 24px;
+  width: 300px;
+}
+
+button {
+  margin-top: 12px;
+  padding: 10px;
+  background: #37474F;
+  border: 1px solid gray;
+  border-radius: 4px;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+/*
+ * Floating Inputs.
+ */
+* {
+  box-sizing: border-box;
+}
+
+.float-input-small {
+  width: 100%;
+  margin: 0.7em 0;
+  position: relative;
+}
+.float-input-small label, .float-input-small i {
+  font-size: 0.7em;
+  padding: 0.7em;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+.float-input-small label {
+  color: gray;
+  left: 0;
+  pointer-events: none;
+}
+.float-input-small input[type="text"], .float-input-small textarea {
+  width: 100%;
+  padding: 0.77em;
+  padding-right: 2.1em;
+  border: none;
+  border-right: 2px solid #142132;
+  outline: 0;
+  font-size: 0.7em;
+  background: white;
+}
+.float-input-small input[type="text"] ~ i, .float-input-small textarea ~ i {
+  color: #142132;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.float-input-small input[type="text"] ~ span, .float-input-small textarea ~ span {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #142132;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+.float-input-small input[type="text"]:valid, .float-input-small textarea:valid {
+  border: none;
+}
+.float-input-small input[type="text"]:valid ~ i, .float-input-small textarea:valid ~ i {
+  opacity: 1;
+}
+.float-input-small input[type="text"]:valid ~ label, .float-input-small textarea:valid ~ label {
+  font-size: 0.53846em;
+  color: #142132;
+  top: -2.5em;
+  -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+.float-input-small input[type="text"]:valid ~ span, .float-input-small textarea:valid ~ span {
+  width: 100%;
+  -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}

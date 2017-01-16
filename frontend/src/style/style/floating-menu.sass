@@ -1,0 +1,47 @@
+.floating-menu
+  position: fixed
+  right: 0
+  bottom: 0
+  z-index: 3
+  padding: 24px
+  svg
+    height: 24px
+    width: 24px
+    fill: white
+  a > svg
+    margin: 18px
+  .action, .main
+    +transition(0.4s)
+    cursor: pointer
+    border: none
+    border-radius: 50%
+    background: black
+    +cross_browsers(box-shadow, 0px 2px 5px rgba(0, 0, 0, 0.26))
+    width: 60px
+    height: 60px
+  .top
+    right: 24px
+    bottom: 84px
+    position: absolute
+    float: right
+  .top .action
+    margin-bottom: -60px
+  .line
+    display: inline-block
+  .action
+    display: block
+    opacity: 0
+  .line .action
+    margin-right: -60px
+    transform: translateY(20px)
+    display: inline-block
+    +transition(0.4s)
+  &:hover
+    +transition(0.3s)
+    .main
+      transform: scale(0.7)
+    .action
+      margin: 0
+      opacity: 1
+      &:hover
+        transform: translateY(20px) scale(1.2)
