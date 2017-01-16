@@ -2,7 +2,7 @@
 A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.
 
 ### Frontend Url
-[See live](https://apps.wspecs.com)
+[See live](https://apps.wspecs.com/hl)
 
 ### Api Url
 [See Endpoints](http://api.wspecs.com/hl)
