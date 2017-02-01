@@ -38,8 +38,20 @@
     getEndPoints() {
       return {
         get: [
-          {path: '/search', handler: this.handler},
-          {path: '/search/:query', handler: this.handler},
+          {
+            path: '/search',
+            sample: '/search',
+            title: 'Search (empty)',
+            handler: this.handler,
+            response: '[]',
+          },
+          {
+            path: '/search/:query',
+            sample: '/search/reste avec nous',
+            title: 'Search',
+            handler: this.handler,
+            responsePath: './docs/search-response.json',
+          },
         ],
       };
     }

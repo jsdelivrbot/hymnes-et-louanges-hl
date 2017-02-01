@@ -1,0 +1,9 @@
+<h4>Request</h4>
+<pre class="prettyprint"><%- item.requestType %> <%- item.sample || item.path %> HTTP/1.0</pre>
+    <h4>Response</h4>
+<pre class="prettyprint">
+HTTP/1.1 200 OK
+Content-Type: <%- item.responseType || 'application/json' %> charset=UTF-8
+
+<%- item.response  %>
+</pre>

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <% include head %>
+  <% include partials/head %>
 <body>
-  <h3><%- request %> <%- endpoint %></h3>
-  <% if (response) { %>
-  <pre>
-<%- response %>
-  </pre>
-  <% } else { %>
-  <% } %>
+  <div id="documentation">
+    <h3><%- request %> <%- sample %></h3>
+    <% if (response) { %>
+    <% let item = locals %>
+<% include partials/request-response %>
+    <% } else { %>
+<pre>Something went wrong</pre>
+    <% } %>
+ </div>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </body>
 </html>

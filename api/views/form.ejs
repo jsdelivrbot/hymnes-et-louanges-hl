@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <% include head %>
+  <% include partials/head %>
 <body>
-  <h3><%- title %></h3>
-  <div class="form">
-    <% fields.forEach(function(field) { %>
-      <div class="float-input-small">
-        <input id="<%- field %>" type="text" required />
-        <label><%- field %></label>
-        <span></span>
-      </div>
-    <% }) %>
+  <div id="documentation">
+    <div class="form">
+      <h3><%- info %></h3>
+      <% fields.forEach(function(field) { %>
+        <div class="float-input-small">
+          <input id="<%- field %>" type="text" required />
+          <label><%- field %></label>
+          <span></span>
+        </div>
+      <% }) %>
+      <button>Submit</button>
+    </div>
   </div>
-  <button>Submit</button>
   <script>
     window.appInputs = <%- JSON.stringify(fields) %>;
   </script>
   <script src="js/app.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
 </body>
 </html>

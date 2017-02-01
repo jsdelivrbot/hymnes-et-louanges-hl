@@ -96,9 +96,27 @@
     getEndPoints() {
       return {
         get: [
-          {path: '/chant/:number', handler: this.chant},
-          {path: '/number/:number', handler: this.number},
-          {path: '/az/:key', handler: this.az},
+          {
+            path: '/chant/:number',
+            sample: '/chant/1',
+            handler: this.chant,
+            title: 'Get Song',
+            responsePath: './docs/chant-response.json'
+          },
+          {
+            path: '/number/:number',
+            sample: '/number/365',
+            handler: this.number,
+            title: 'List Numeric Index',
+            responsePath: './docs/number-response.json'
+          },
+          {
+            path: '/az/:key',
+            sample: '/az/u',
+            handler: this.az,
+            title: 'List Alphabetize Index',
+            responsePath: './docs/az-response.json'
+          },
         ],
       };
     }

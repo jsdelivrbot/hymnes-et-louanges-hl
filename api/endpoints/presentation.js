@@ -51,7 +51,13 @@
     getEndPoints() {
       return {
         get: [
-          {path: '/presentation/:numbers', handler: this.presentation},
+          {
+            path: '/presentation/:numbers',
+            sample: '/presentation/217',
+            title: 'Get Slideshow Info',
+            handler: this.presentation,
+            responsePath: './docs/presentation-response.json',
+          },
         ],
       };
     }
