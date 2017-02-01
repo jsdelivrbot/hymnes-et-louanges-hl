@@ -1,6 +1,6 @@
 {
   "name": "hymnes-et-louanges",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.",
   "image": "https://wspecs.com/img/hl.jpg",
   "api": "http://api.wspecs.com/hl",

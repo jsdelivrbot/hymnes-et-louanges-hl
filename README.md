@@ -31,6 +31,11 @@ A virtual hymnbook use by french-speaking adventist churches. The application co
 
 ## REST api for hl
 * GET /chant/:number
+* GET /number/:number
+* GET /az/:key
+* GET /presentation/:numbers
+* GET /search
+* GET /search/:query
 
 ## License
 [Apache](LICENSE)
