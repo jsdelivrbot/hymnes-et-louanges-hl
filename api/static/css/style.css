@@ -82,7 +82,8 @@ button {
 }
 
 body {
-  margin: 0px;
+  margin: 0;
+  padding: 0 24px;
   background: #eee;
 }
 h1, h2, h3, h4, p, li, label {
