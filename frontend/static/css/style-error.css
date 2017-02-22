@@ -1,0 +1,44 @@
+.topbar {
+  transition: all .5s cubic-bezier(.2, 0, .03, 1);
+  width: 100%;
+  background: #FF6C60;
+  height: 5px;
+  position: fixed;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.code {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+.info {
+  font-family: "Arial";
+  font-size: 20px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #fAfCfE;
+}
+
+.message {
+  font-family: "Arial";
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+p {
+  text-align: center;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}

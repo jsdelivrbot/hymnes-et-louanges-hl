@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <% include partials/head %>
+<body>
+  <% include partials/appbar %>
+  <div class="full-grid">
+    <div class="left">
+      <div class="content">
+        <h3>Bienvenue</h3>
+        <p><em>...Soyez, au contraire, remplis de l'Esprit; entretenez-vous par des psaumes, par des hymnes, et par des cantiques spirituels, chantant et célébrant de tout votre coeur les louanges du Seigneur; rendez continuellement grâces pour toutes choses à Dieu le Père, au nom de notre Seigneur Jésus Christ</em></p>
+        <p class="ref"><strong> - Éph 5:18-20</strong></p>
+      </div>
+    </div>
+    <div class="right">
+      <img src="img/mobile_mock.png" alt="">
+    </div>
+    <div class="clear"></div>
+    <div class="right">
+      <div class="content">
+        <h3>Hymnes &amp; Louanges</h3>
+        <p class="info">Recueil de cantiques a l'usage des églises adventistes en langue française.
+        Cette application fournit la capacité de trouver rapidement une chanson en utilisant la table des matières ou les fonctions de recherche. Un mode de présentation permet également aux utilisateurs de visualiser les chansons sous forme de diaporama.</p>
+        <a class="action" href="chant/1" target="_self">Chantez</a>
+      </div>
+    </div>
+    <div class="left icons">
+      <div class="row">
+        <a class="col-1-3" target="_self" href="az/A">
+          <svg class="menu">
+            <use xlink:href="img/defs.svg#az" />
+          </svg>
+        </a>
+
+        <div class="col-1-3 search-action">
+          <svg class="menu">
+            <use xlink:href="img/defs.svg#search" />
+          </svg>
+        </div>
+        <a class="col-1-3" target="_self" href="presentation/1">
+          <svg class="menu">
+            <use xlink:href="img/defs.svg#fullscreen" />
+          </svg>
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <% include partials/script%>
+</body>
+</html>

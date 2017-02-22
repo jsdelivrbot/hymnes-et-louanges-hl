@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <% include partials/head %>
+<body>
+  <% include partials/appbar %>
+
+  <div class="page">
+
+    <div class="hl-indexer-list">
+      <% for (var w in table.key) { %>
+      <a href="<%- table.prefix %>/<%- table.key[w] %>" target="_self"
+        class="<%- String(table.key[w]) === String(table.selected) ? 'select' : ''%>">
+        <%- table.key[w] %></a>
+      <% } %>
+    </div>
+
+    <div class="hl-indexer">
+      <ul>
+        <% for (var w in table.list.songs) { %>
+          <% var song = table.list.songs[w] %>
+          <li class="hl-index">
+            <div class="song-info">
+              <% if (table.prefix === 'az') { %>
+                <a href="chant/<%- song.number %>" target="_self">
+                  <%- song.title %> - (<%- song.number %>)
+                </a>
+              <% } else { %>
+                <a href="chant/<%- song.number %>" target="_self">
+                 <%- song.number %> - <%- song.title %>
+                </a>
+              <% } %>
+              <a href="chant/<%- song.number %>" target="_self">
+                <i class="fa fa-file-text-o"></i>
+              </a>
+              <a href="presentation/<%- song.number %>" target="_self">
+                <i class="fa fa-external-link"></i>
+              </a>
+            </div>
+            <span class="peak"><%- song.peak %></span>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+
+  <% include partials/script%>
+</body>
+</html>

@@ -1,0 +1,70 @@
+.full-grid
+  padding-top: 56px
+  color: white
+  .action
+    +shadow()
+    padding: 16px
+    background: #333
+    color: white
+    border-radius: 2px
+  h3
+    font-size: 2em
+    margin-bottom: 24px
+  p
+    font-size: 1em
+    line-height: 1.7em
+    &.ref
+      margin-top: 16px
+      font-size: .8em
+    &.info
+      margin-bottom: 48px
+
+  .left, .right
+    width: 50%
+    height: 396px
+    overflow: hidden
+    .content
+      height: 100%
+      padding: 48px
+      background: #eee
+      color: black
+    img
+      width: 100%
+      +breakpoint(tablet)
+        width: auto
+        height: 100%
+
+  .left
+    float: left
+
+  .right
+    float: right
+    background: #ccc
+  .clear
+    clear: both
+  +breakpoint(mobile)
+    .left, .right
+      width: 100%
+      height: auto
+      .content
+        padding: 32px
+      img
+        width: 100%
+        height: auto
+        margin-bottom: -10px
+  .row
+    padding: 160px 64px
+    +col(3, 1, 100%)
+      height: 150px
+      svg
+        transform: scale(5)
+  .icons
+    background: $wspecs_blue
+.col-1-3
+  cursor: pointer
+  text-align: center
+  svg
+    width: 24px
+    height: 24px
+    fill: $background
+    transform: scale(6)

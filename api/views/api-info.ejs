@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include partials/head %>
+<body>
+  <div id="documentation">
+    <h1 class="title">REST API Documentation</h1>
+    <p class="subtitle">version: <%- version %></p>
+    <hr />
+    <h2>Endpoints</h2>
+    <ul>
+      <% for (const item of endpoints) { %>
+      <li><a href="#<%- item.id %>"><%- item.title %></a></li>
+      <% } %>
+    </ul>
+
+    <% for (const item of endpoints) { %>
+    <hr />
+    <h3 id="<%- item.id %>"><%- item.title %></h3>
+    <p class="description"><%- item.description %></p>
+    <p class="request">
+    <% if (item.response) { %>
+      <a href="?endpoint=<%- item.path %>&request=<%- item.requestType %>">
+        <strong><%- item.requestType %></strong> <%-item.path %>
+      </a>
+    <% } else { %>
+      <strong><%- item.requestType %></strong> <%-item.path %>
+    <% } %>
+    </p>
+<% if (item.response) { %><% include partials/request-response %><% } %>
+    <% } %>
+  </div>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

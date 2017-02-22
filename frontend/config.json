@@ -1,0 +1,28 @@
+{
+  "port": 7210,
+  "mainFolder": "hl",
+  "prodFolder": "/var/www/PROD/hl/frontend",
+  "mainFile": "main.ejs",
+  "path": "/hl",
+  "dev": {
+    "api": "http://servone.wspecs.com:7213/hl",
+    "url": "http://servone.wspecs.com"
+  },
+  "prod": {
+    "api": "http://api.wspecs.com/hl",
+    "url": "https://apps.wspecs.com"
+  },
+  "title": "Landing Page for hl",
+  "name": "hymnes-et-louanges",
+  "description": "A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.",
+  "image": "https://wspecs.com/img/hl.jpg",
+  "root": "www",
+  "destination": "www",
+  "source": "src",
+  "static": "static",
+  "node": "node",
+  "public": "public",
+  "lib": "lib",
+  "test": "test",
+  "route": "route"
+}
