@@ -160,7 +160,11 @@
      * @return {Promise} - resolved promise
      */
     createThumbnail(orig, dest, name, size){
+<<<<<<< HEAD
       return new Promise((resolve) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       size = size || 256;
       easyimg.info(orig).then(file => {
         easyimg.thumbnail({
@@ -169,10 +173,17 @@
           width: file.width > size ? size: file.width,
         }).then(img => {
           log.info('Thumb created for', name, img);
+<<<<<<< HEAD
           resolve();
         });
       });
       });
+=======
+          defer.resolve();
+        });
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -184,6 +195,7 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     createProfileThumb(filepath, name, profile){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         profile = profile || 'profile';
         if (this.isImage(filepath)){
@@ -196,6 +208,20 @@
           reject();
         }
       });
+=======
+      const defer = Promise.defer();
+      profile = profile || 'profile';
+      if (this.isImage(filepath)){
+        const destination = config.files + profile + '/thumb/';
+        this.createThumbnail(filepath, destination, name , 256, stats => {
+          defer.resolve(stats);
+        });
+      }
+      else {
+        defer.reject();
+      }
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -207,6 +233,7 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     uploadAndCreateFiles(name, orig, dest){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         fs.exists(orig, exists => {
           if (exists){
@@ -254,6 +281,55 @@
           }
         });
       });
+=======
+      const defer = Promise.defer();
+      fs.exists(orig, exists => {
+        if (exists){
+          easyimg.info(orig).then(file => {
+            easyimg.thumbnail({
+              src: orig,
+              dst: dest + '/thumb/' + name,
+              width: file.width > 256 ? 256: file.width,
+            })
+            .then(img => log.info('Thumb created for', name, img));
+
+            let height = file.height;
+            if (file.width > 768)
+              height = (file.height * (768 / file.width));
+            easyimg.resize({
+              src: orig,
+              dst: dest + '/preview/' + name,
+              width: file.width > 768 ? 768: file.width,
+              height: height
+            })
+            .then(img => log.info('Preview created for', name, img));
+
+            easyimg.resize({
+              src: orig,
+              dst: dest + '/full/' + name,
+              width: file.width,
+              height: file.height
+            })
+            .then(img => {
+              log.info('Full created for', name, img);
+              fs.unlink(orig, function(err) {
+                if (!err){
+                  log.debug('File deleted successfully!');
+                  defer.resolve();
+                } 
+                else {
+                  defer.reject();
+                }
+              });
+            });
+          });
+        }
+        else {
+          log.info(orig + ' path', 'does not', 'exists');
+        }
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -496,6 +572,7 @@
         expression.$or.push(orExp);
       });
       return expression;
+<<<<<<< HEAD
     },
 
     retry(fn, count=2) {
@@ -527,6 +604,9 @@
       log.error(error);
       rejectFn(error);
     },
+=======
+    }
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   });
   
   String.prototype.caseIns = module.exports.caseIns;

@@ -8,13 +8,19 @@
   const MongoClient = require('mongodb').MongoClient;
   const config = require('./config');
   const log = require('./log');
+<<<<<<< HEAD
   const fn = require('./functions');
   const exporter = require('./exports');
   const mongoose = require('mongoose');
+=======
+  const exporter = require('./exports');
+
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
 
   /**
    * Local constiables.
    */
+<<<<<<< HEAD
   const host = `127.0.0.1:27017/${config.col}`;
   let url = `mongodb://${host}`;
   if (config.col_auth) {
@@ -23,12 +29,18 @@
   if (config.col) {
     mongoose.connect(url);
   }
+=======
+  const url = 'mongodb://127.0.0.1:27017/' + config.col;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
 
 
   exporter.publicize(module, {
 
+<<<<<<< HEAD
     mongoose,
 
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     /**
      * Log data in debug mode
      * @return {void}
@@ -179,17 +191,28 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     remove(col, query, mod){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       try{
         MongoClient.connect(url, (err, db) => {
           const collection = db.collection(col);
           collection.remove(query, mod, (err, res) => {
             if (err){
               log.error(err);
+<<<<<<< HEAD
               reject(err);
             }
             else {
               resolve(res);
+=======
+              defer.reject(err);
+            }
+            else {
+              defer.resolve(res);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             }
             db.close();
           });
@@ -197,9 +220,15 @@
       }
       catch (err){
         log.error(err);
+<<<<<<< HEAD
         reject(err);
       }
       });
+=======
+        defer.reject(err);
+      }
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -208,17 +237,30 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     drop(col){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
       try{
         MongoClient.connect(url, (_, db) => {
           db.collection(col).drop(data => resolve(data));
+=======
+      const defer = Promise.defer();
+      try{
+        MongoClient.connect(url, (_, db) => {
+          db.collection(col).drop(data => defer.resolve(data));
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
         });
       }
       catch (err){
         log.error(err);
+<<<<<<< HEAD
         reject(err);
       }
       });
+=======
+        defer.reject(err);
+      }
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -227,30 +269,51 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     getDb(){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       try{
         MongoClient.connect(url, (err, db) => {
           if (db) {
             db.authenticate(config.col, config.col_auth, error => {
               if (error) {
+<<<<<<< HEAD
                 reject(error);
               }
               else {
                 resolve(db);
+=======
+                defer.reject(error);
+              }
+              else {
+                defer.resolve(db);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
               }
             });
           }
           else {
             log.error(err);
+<<<<<<< HEAD
             reject(err);
+=======
+            defer.reject(err);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
           }
         });
       }
       catch (err){
         log.error(err);
+<<<<<<< HEAD
         reject(err);
       }
       });
+=======
+        defer.reject(err);
+      }
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /** Find the first element in a specific collection.
@@ -260,22 +323,37 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     findOne(col, query, finder){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       this.getDb().then(db => {
         if (db) {
           const collection = db.collection(col);
           collection.find(query, finder).toArray((err, docs) => {
             if (err || !docs){
               log.error(err);
+<<<<<<< HEAD
               reject(err);
             }
             else
               resolve(docs[0]);
+=======
+              defer.reject(err);
+            }
+            else
+              defer.resolve(docs[0]);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             db.close();
           });
         }
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /** Find all the elements in a specific collection.
@@ -285,23 +363,38 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     findAll(col, query, finder){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       this.getDb().then(db => {
         if (db) {
           const collection = db.collection(col);
           collection.find(query, finder).toArray((err, docs) => {
             if (err || !docs){
               log.error(err);
+<<<<<<< HEAD
               reject(err);
             }
             else{
               resolve(docs);
+=======
+              defer.reject(err);
+            }
+            else{
+              defer.resolve(docs);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             }
             db.close();
           });
         }
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -309,21 +402,36 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     getContacts(){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       MongoClient.connect('mongodb://localhost:27017/wspecs', (err, db) => {
         const collection = db.collection('contacts');
         collection.find({}, { _id: 0}).toArray((err, docs) => {
           if (err || !docs){
             log.error(err);
+<<<<<<< HEAD
             reject(err);
           }
           else{
             resolve(docs);
+=======
+            defer.reject(err);
+          }
+          else{
+            defer.resolve(docs);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
           }
           db.close();
         });
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -334,6 +442,7 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     upsertObj(col, query, update){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         this.getDb().then(db => {
           if (db) {
@@ -382,10 +491,31 @@
 
     /**
      * Insert multiple objects in a specified collection
+=======
+      const defer = Promise.defer();
+      this.getDb().then(db => {
+        if (db) {
+          db.collection(col).update(query,
+            {$set: update},
+            { upsert: true },
+            (err, res) => {
+              defer.resolve(res);
+              db.close();
+            }
+          );
+        }
+      });
+      return defer.promise;
+    },
+
+    /**
+     * Insert an object in a specified collection
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
      * @param {string} col - Name of the collecitont to update.
      * @param {Object} ins - Object to insert in collection.
      * @return {Promise} - resolved on success otherwise reject
      */
+<<<<<<< HEAD
     insertMany(col, ins){
       return new Promise((resolve, reject) => {
       this.getDb().then(db => {
@@ -397,12 +527,29 @@
             }
             else {
               resolve(res);
+=======
+    insertObj(col, ins){
+      const defer = Promise.defer();
+      this.getDb().then(db => {
+        if (db) {
+          db.collection(col).insert(ins, (err, res) => {
+            if (err) {
+              log.error(err);
+              defer.reject(err);
+            }
+            else {
+              defer.resolve(res);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             }
             db.close();
           });
         }
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -413,22 +560,37 @@
      * @return {Promise} - resolved on success otherwise reject
      */
     updateInfo(col, query, update){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       this.getDb().then(db => {
         if (db) {
           db.collection(col).updateMany(query, update, {multi: true}, (err, data) => {
             if (err) {
               log.error(err);
+<<<<<<< HEAD
               reject(err);
             }
             else {
               resolve(data);
+=======
+              defer.reject(err);
+            }
+            else {
+              defer.resolve(data);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             }
             db.close();
           });
         }
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -440,7 +602,11 @@
      * @return {void}
      */
     aggregate(col, projection, updateKey, selector){
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
+=======
+      const defer = Promise.defer();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       this.getDb().then(db => {
         if (db) {
           const query = [{$project: projection}];
@@ -449,6 +615,7 @@
                const update = {};
                update[updateKey] = data[0][updateKey];
                selector = selector || {};
+<<<<<<< HEAD
                this.upsertObj(col, selector, update, () => resolve());
              } 
              else if (data) {
@@ -456,11 +623,24 @@
              }
              else {
                reject();
+=======
+               this.upsertObj(col, selector, update, () => defer.resolve());
+             } 
+             else if (data) {
+               defer.resolve(data);
+             }
+             else {
+               defer.reject();
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
              }
           });
         }
       });
+<<<<<<< HEAD
       });
+=======
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -502,4 +682,7 @@
     },
   });
 })();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0

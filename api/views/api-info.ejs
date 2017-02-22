@@ -18,6 +18,7 @@
     <h3 id="<%- item.id %>"><%- item.title %></h3>
     <p class="description"><%- item.description %></p>
     <p class="request">
+<<<<<<< HEAD
     <% if (item.response) { %>
       <a href="?endpoint=<%- item.path %>&request=<%- item.requestType %>">
         <strong><%- item.requestType %></strong> <%-item.path %>
@@ -25,6 +26,11 @@
     <% } else { %>
       <strong><%- item.requestType %></strong> <%-item.path %>
     <% } %>
+=======
+      <a href="?endpoint=<%- item.path %>&request=<%- item.requestType %>">
+        <strong><%- item.requestType %></strong> <%-item.path %>
+      </a>
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     </p>
 <% if (item.response) { %><% include partials/request-response %><% } %>
     <% } %>

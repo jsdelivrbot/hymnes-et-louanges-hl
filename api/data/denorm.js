@@ -1,12 +1,18 @@
 (function() {
   let fs = require('fs');
   let json = JSON.parse(fs.readFileSync('data/json/hymns.json'));
+<<<<<<< HEAD
   const api = require('./../main'),
     args = api.lib.args,
     db = api.lib.database,
     log = api.lib.log,
     search = api.lib.search,
     simpleText = api.lib.simpleText;
+=======
+  let simpleText = require('./../main').lib.simpleText;
+  let db = require('./../main').lib.database;
+  let search = require('./../main').lib.search;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
 
 
   let SONG_SIZE = 50;
@@ -72,20 +78,33 @@
 
 
   function addData(colName, json) {
+<<<<<<< HEAD
     db.drop(colName).then(() => {
+=======
+    db.drop(colName, function() {
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       db.insertFromJson(colName, json);
     });
   }
 
 
+<<<<<<< HEAD
   if (args.options.add) {
     log.info('Adding HL data');
+=======
+  if (process.argv[2] === 'add') {
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     addData('number', index_number);
     addData('az', index_az);
     addData('hymns', json);
   }
+<<<<<<< HEAD
   if (args.options.map) {
     log.info('Updating search map');
     search.mapAll(searches, true);
+=======
+  if (process.argv[2] === 'map') {
+    search.mapAll(searches);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   }
 })();

@@ -54,6 +54,7 @@
     'ñ': 'n'
   };
 
+<<<<<<< HEAD
   const SEARCH_IGNORE_MAP = {
     'i': 1,
     'a': 1,
@@ -100,12 +101,17 @@
     'with': 1
   };
 
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   exporter.publicize(module, {
 
     SEARCH_REPLACE_MAP,
 
+<<<<<<< HEAD
     SEARCH_IGNORE_MAP,
 
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     SEARCH_REPLACE_REGEX: new RegExp(
        Object.keys(SEARCH_REPLACE_MAP).join('|'), 'gi'), 
 

@@ -15,10 +15,20 @@
      * @return {string} - A UTC timestamp for now.
      */
     now(dateFormat){
+<<<<<<< HEAD
       if (dateFormat) {
         return moment(moment().utc()).toString();
       }
       return moment.now();
+=======
+      const time = moment(moment().utc());
+      if (dateFormat) {
+        return time.toString();
+      }
+      else {
+        return time.format();
+      }
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 

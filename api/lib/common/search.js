@@ -7,7 +7,10 @@
   const db = require('./database');
   const log = require('./log');
   const exporter = require('./exports');
+<<<<<<< HEAD
   const fn = require('./functions');
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
 
   const TABLE = 'search';
   const RESULTS_TABLE = 'results';
@@ -52,6 +55,7 @@
      */
     addToSearch(sentence, ref, extra, search){
       search = search || {};
+<<<<<<< HEAD
       if (!sentence) {
         return search;
       }
@@ -66,6 +70,21 @@
         if (simpleText.SEARCH_IGNORE_MAP[key] === 1) {
           search[key] = [];
           continue;
+=======
+      if (!sentence)
+        return search;
+      sentence = simpleText.preProcess(sentence);
+      const words = sentence.split(' ');
+      let previous = false;
+      words.forEach(word => {
+        const key = simpleText.getKey(word);
+        if (key.length < 1 || !key) {
+          return;
+        }
+        if (simpleText.ignore[key] === 1) {
+          search[key] = [];
+          return;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
         }
         if (!search[key]) search[key] = [];
         const entry = {result: ref};
@@ -73,7 +92,11 @@
         if (extra && extra > 0) entry.extra = extra;
         search[key].push(entry);
         previous = key;
+<<<<<<< HEAD
       }
+=======
+      });
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       return search;
     },
 
@@ -114,6 +137,7 @@
      * @return {Promise} - resolved promised
      */
     upsert(key, results) {
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         const query = {key: key},
             update = {$push: {results: {$each: results}}};
@@ -124,6 +148,18 @@
           resolve();
         }).catch(e => fn.reject(e, reject));
       });
+=======
+      const defer = Promise.defer();
+      const query = {key: key},
+          update = {$push: {results: {$each: results}}};
+      db.updateInfo(TABLE, query, update).then(data => {
+        if (data && data.result && data.result.n === 0) {
+          this.add(key, results).then(() => defer.resolve());
+        }
+        defer.resolve();
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -134,11 +170,18 @@
      * @return {Promise} - resolved promised
      */
     add(key, results) {
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         db.insertObj(TABLE, {key: key, results: results})
           .then(() => resolve())
           .catch(e => fn.reject(e, reject));
       });
+=======
+      const defer = Promise.defer();
+      db.insertObj(TABLE, {key: key, results: results})
+        .then(() => defer.resolve());
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -152,6 +195,7 @@
      * @return {Promise} - resolved promised
      */
     addResult(key, map) {
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         map.key = key;
         db.upsertObj(RESULTS_TABLE, {key: key}, map).then(() => {
@@ -159,6 +203,14 @@
           resolve(key);
         }).catch(e => fn.reject(e, reject));
       });
+=======
+      const defer = Promise.defer();
+      log.debug('mapping: %s', key);
+      map.key = key;
+      db.upsertObj(RESULTS_TABLE, {key: key}, map)
+        .then(() => defer.resolve());
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -168,6 +220,7 @@
      * @return {Promise} - resolved promised
      */
     unmap(ref) {
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         db.remove(RESULTS_TABLE, {key: ref}).then(() => {
           const selector = {'$pull': {results: {result: ref}}};
@@ -179,6 +232,19 @@
           }).catch(e => fn.reject(e, reject));
         });
       });
+=======
+      const defer = Promise.defer();
+      db.remove(RESULTS_TABLE, {key: ref}).then(() => {
+        const selector = {'$pull': {results: {result: ref}}};
+        db.updateInfo(TABLE, {}, selector).then(() => {
+          db.remove(TABLE, {results: {$size: 0}}).then(() => {
+            log.debug('unmapped: %s', ref);
+            defer.resolve();
+          });
+        });
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -206,6 +272,7 @@
      * @return {Promise} - resolved promised
      */
     unmapAll(refs) {
+<<<<<<< HEAD
       return new Promise(resolve => {
         (function loop(i) {
           const ref = refs[i];
@@ -219,6 +286,21 @@
           });
         }).bind(this)(0);
       });
+=======
+      const defer = Promise.defer();
+      (function loop(i) {
+        const ref = refs[i];
+        this.unmap(ref).then(() => {
+          if (++i === refs.length) {
+            defer.resolve();
+          }
+          else {
+            loop(i);
+          }
+        });
+      })(0);
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -226,6 +308,7 @@
      * @return {void}
      */
     addSearches(map) {
+<<<<<<< HEAD
       return new Promise((resolve, reject) => {
         const query = {$or: Object.keys(map).map(key => ({key}))};
         db.findAll(TABLE, query).then(data => {
@@ -244,6 +327,19 @@
           });
         });
       });
+=======
+      const keys = Object.keys(map);
+      (function loop(i) {
+        const key = keys[i];
+        const value = map[key];
+        if (value) {
+          this.upsert(key, value).then(() => {
+            log.debug('Adding new value %s', key);
+            if (++i < keys.length) loop(i);
+          });
+        }
+      })(0);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     /**
@@ -258,7 +354,10 @@
      */
     mapAll(searches, dropAll) {
       if (dropAll) {
+<<<<<<< HEAD
         log.debug('dropping results table');
+=======
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
         db.drop(TABLE).then(() => {
           db.drop(RESULTS_TABLE).then(() => {
             this.mapEntries(searches);
@@ -267,9 +366,13 @@
       }
       else {
         const refs = searches.map(x => x.ref);
+<<<<<<< HEAD
         this.unmapAll(refs).then(() => {
           this.mapEntries(searches);
         });
+=======
+        this.unmapAll(refs).then(this.mapEntries.bind(this));
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       }
     },
 
@@ -283,14 +386,19 @@
      * @return {void}
      */
     mapEntries(searches) {
+<<<<<<< HEAD
       log.debug('Mapping %s entries', searches.length);
       let search = {};
+=======
+      const search = {};
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       (function loop(i) {
         const entry = searches[i];
         if (entry) {
           this.addResult(entry.ref, entry.result).then(() => {
             this.addToSearch(entry.title, entry.ref, 10, search);
             this.addToSearch(entry.paragraph, entry.ref, 0, search);
+<<<<<<< HEAD
             if (++i < searches.length) {
               loop.bind(this)(i);
             }
@@ -300,6 +408,13 @@
           });
         }
       }).bind(this)(0);
+=======
+            if (++i < searches.length) loop(i);
+          });
+        }
+      })(0);
+      this.addSearches(search);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
     rankResults(previousWord, results, map) {
@@ -334,6 +449,7 @@
 
 
     handleSearch(data, words, certainty) {
+<<<<<<< HEAD
       return new Promise((resolve) => {
         if (data) {
           let resultMap = {},
@@ -362,6 +478,36 @@
           resolve(results);
         }
       });
+=======
+      const defer = Promise.defer();
+      if (data) {
+        let resultMap = {},
+            previousWord,
+            searchMap = {};
+        data.forEach(result => {
+          searchMap[result.key] = result.results;
+        });
+        words.forEach((word, index) => {
+          if (index > 0) {
+            previousWord = words[index-1];
+          }
+          const result = searchMap[word];
+          if (result) {
+            this.rankResults(previousWord, result, resultMap);
+          }
+        });
+        log.debug(resultMap);
+        let results = this.sortResults(resultMap).slice(0, LIMIT);
+        log.debug('Found %s result', results.length);
+        if (certainty && results.length > 1) {
+          if ((results[0].value - results[1].value) > certainty) {
+            results = results.slice(0, 1);
+          }
+        }
+        defer.resolve(results);
+      }
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -370,6 +516,7 @@
      * @return {Promise} - resolved promised
      */
     fetchResults(keys) {
+<<<<<<< HEAD
       return new Promise((resolve) => {
         if (keys.length === 0) {
           resolve([]);
@@ -393,6 +540,30 @@
           });
         }
       });
+=======
+      const defer = Promise.defer();
+      if (keys.length === 0) {
+        defer.resolve([]);
+        return defer.promise;
+      }
+      keys = keys.splice(0, LIMIT);
+      const selector = {_id: 0},
+          query = {'$or': []};
+      keys.forEach(key => {
+        query.$or.push({key: key.ref});
+      });
+      db.findAll(RESULTS_TABLE, query, selector).then(data => {
+        const results = [];
+        keys.forEach(key => {
+          const item = data.filter(item => {
+            return item.key === key.ref;
+          })[0];
+          results.push(item);
+        });
+        defer.resolve(results);
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     },
 
 
@@ -403,6 +574,7 @@
      * @return {Promise} - resolved promised
      */
     search(sentence, certainty) {
+<<<<<<< HEAD
       return new Promise((resolve) => {
         certainty = certainty || CERTAINTY;
         log.debug('Searching %s', sentence);
@@ -422,6 +594,28 @@
           }
         });
       });
+=======
+      const defer = Promise.defer();
+      certainty = certainty || CERTAINTY;
+      log.debug('Searching %s', sentence);
+      const words = simpleText.getKeys(sentence);
+      if (words.length === 0) {
+        defer.resolve([]);
+        return defer.promise;
+      }
+      const query = {'$or': []};
+      words.forEach(key => {
+        query.$or.push({key: key});
+      });
+      db.findAll(TABLE, query, {}).then(data => {
+        if (data) {
+          this.handleSearch(data, words, certainty).then(data => {
+            this.fetchResults(data).then(data => defer.resolve(data));
+          });
+        }
+      });
+      return defer.promise;
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     }
   });
 })();

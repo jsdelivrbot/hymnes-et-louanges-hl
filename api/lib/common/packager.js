@@ -104,12 +104,19 @@
      * @param {string} filename - template file to read
      * @param {boolean} [writeFile=true] - whether to write file in the current
      *   directory;
+<<<<<<< HEAD
      * @param {string} additionalText - text to add a readme file.
      * @return {void}
      */
     describe(dirname, filename, writeFile, additionalText) {
       let pkg = this.getPackage(dirname);
       pkg.text = additionalText;
+=======
+     * @return {void}
+     */
+    describe(dirname, filename, writeFile) {
+      let pkg = this.getPackage(dirname);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
       filename = filename || 'README.md';
       const template = fileHandler.getTemplate(filename);
       const content = ejs.render(template, pkg);
@@ -148,6 +155,7 @@
             break;
 
           case 'describe':
+<<<<<<< HEAD
             this.describe(args.getDirectory(), 'README.md', true,
                 args.options.text);
             break;
@@ -155,6 +163,13 @@
           case 'overview':
             this.describe(args.getDirectory(), 'README.md', false,
                 args.options.text);
+=======
+            this.describe(args.getDirectory());
+            break;
+
+          case 'overview':
+            this.describe(args.getDirectory(), 'README.md', false);
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
             break;
 
           case 'update':

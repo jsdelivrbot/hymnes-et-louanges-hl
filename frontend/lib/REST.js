@@ -31,6 +31,7 @@ module.exports = function(app, config, base, serverUrl, router){
     });
   }
 
+<<<<<<< HEAD
   app.locals.render = function(res, path, options) {
     res.render(path, options, (err, html) => {
       res.statusCode = 400;
@@ -61,6 +62,12 @@ module.exports = function(app, config, base, serverUrl, router){
 
   router(app, config.path, appInfo, getRequest, frontendUtils);
 
+=======
+
+  router(app, config.path, appInfo, getRequest, frontendUtils);
+
+
+>>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   var server = app.listen(config.port, function () {
     var host = server.address().address;
     console.log('Example app listening at %s', base);
