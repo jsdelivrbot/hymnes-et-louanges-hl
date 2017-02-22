@@ -1,10 +1,6 @@
 {
   "name": "hymnes-et-louanges",
-<<<<<<< HEAD
-  "version": "1.0.13",
-=======
-  "version": "1.0.5",
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
+  "version": "1.0.14",
   "description": "A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.",
   "image": "https://wspecs.com/img/hl.jpg",
   "api": "http://api.wspecs.com/hl",
@@ -13,21 +9,15 @@
   "year": 2017,
   "devDependencies": {
     "fs": "latest",
-<<<<<<< HEAD
+    "request": "latest",
     "basic-auth": "latest",
     "jsonwebtoken": "latest",
     "atob": "latest",
-=======
-    "request": "latest",
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     "minimist": "latest",
     "mkdirp": "latest",
     "path": "latest",
     "mongodb": "latest",
-<<<<<<< HEAD
     "mongoose": "latest",
-=======
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
     "child_process": "latest",
     "easyimage": "latest",
     "chalk": "latest",
@@ -37,17 +27,9 @@
     "ejs": "latest",
     "moment": "latest",
     "html-to-text": "latest",
-<<<<<<< HEAD
-    "request": "latest",
     "body-parser": "latest",
     "cookie-parser": "latest",
     "express": "latest",
     "showdown": "latest"
-=======
-    "express": "latest",
-    "body-parser": "latest",
-    "showdown": "latest",
-    "object-assign": "latest"
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   }
 }

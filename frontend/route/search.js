@@ -26,7 +26,7 @@
           var tags = appInfo;
           tags.query = query;
           tags.results = data;
-          res.render('search.ejs', tags);
+          app.locals.render(res, 'search.ejs', tags);
         }
       });
     }

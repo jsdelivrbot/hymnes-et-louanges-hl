@@ -31,22 +31,25 @@ module.exports = function(app, config, base, serverUrl, router){
     });
   }
 
-<<<<<<< HEAD
   app.locals.render = function(res, path, options) {
     res.render(path, options, (err, html) => {
-      res.statusCode = 400;
       if (err) {
         console.error(err);
-        res.render('error', {
-          code: res.statusCode,
-          info: 'Bad Request',
-          message: 'The server cannot process the request' + 
-            'due to something that is perceived to be a client error',
-        });
+        app.locals.clientError(res);
       }
       else {
         res.send(html);
       }
+    });
+  }
+
+  app.locals.clientError = function(res) {
+    res.statusCode = 400;
+    res.render('error', {
+      code: res.statusCode,
+      info: 'Bad Request',
+      message: 'The server cannot process the request' + 
+        'due to something that is perceived to be a client error',
     });
   }
 
@@ -62,12 +65,6 @@ module.exports = function(app, config, base, serverUrl, router){
 
   router(app, config.path, appInfo, getRequest, frontendUtils);
 
-=======
-
-  router(app, config.path, appInfo, getRequest, frontendUtils);
-
-
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   var server = app.listen(config.port, function () {
     var host = server.address().address;
     console.log('Example app listening at %s', base);

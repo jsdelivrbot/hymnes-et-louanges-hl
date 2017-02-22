@@ -5,24 +5,21 @@
 
   'use strict';
 
-  function getDescription(song) {
-    var description = '';
-    if (song) {
-      description = song[song.parts[0]].join(' ');
-    }
-    return description;
-  }
-
   function serve(app, root, appInfo, request){
 
     function handler(req, res) {
       var number = req.params.number || 1;
       request('/chant/' + number, function(data) {
-        var tags = appInfo;
-        tags.song = data;
-        tags.title = data.title;
-        tags.description = getDescription(data);
-        res.render('chant.ejs', tags);
+        if (data.title) {
+          var tags = appInfo;
+          tags.song = data;
+          tags.title = data.title;
+          tags.description = data[data.parts[0]].join(' ');
+          app.locals.render(res, 'chant.ejs', tags);
+        }
+        else {
+          app.locals.clientError(res);
+        }
       });
     }
 

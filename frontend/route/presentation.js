@@ -13,7 +13,7 @@
         var tags = appInfo;
         tags.slides = data;
         tags.number = (data[0] || {}).number;
-        res.render('presentation.ejs', tags);
+        app.locals.render(res, 'presentation.ejs', tags);
       });
     }
 

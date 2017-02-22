@@ -14,7 +14,7 @@
     });
 
     function appHandler(req, res) {
-      res.render('main.ejs', appInfo);
+      app.locals.render(res, 'main.ejs', appInfo);
     }
 
     function azHandler(req, res) {
@@ -24,7 +24,7 @@
         tags.table = data;
         tags.table.selected = letter;
         tags.table.prefix = 'az';
-        res.render('az.ejs', tags);
+        app.locals.render(res, 'az.ejs', tags);
       });
     }
 
@@ -35,7 +35,7 @@
         tags.table = data;
         tags.table.selected = number;
         tags.table.prefix = 'number';
-        res.render('az.ejs', tags);
+        app.locals.render(res, 'az.ejs', tags);
       });
     }
 
@@ -44,5 +44,8 @@
     app.get(root + '/az/:letter', azHandler);
     app.get(root + '/number', numberHandler);
     app.get(root + '/number/:number', numberHandler);
+    app.get(root + '*', (_, res) => {
+      app.locals.notFound(res);
+    });
   };
 })();

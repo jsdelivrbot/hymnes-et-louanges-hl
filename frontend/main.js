@@ -1,11 +1,6 @@
 (function() {
   var express = require('express');
   var app = express();
-<<<<<<< HEAD
-=======
-  Object.assign = require('object-assign');
-
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
 
   function start(config, router) {
     var folder = config.destination;
