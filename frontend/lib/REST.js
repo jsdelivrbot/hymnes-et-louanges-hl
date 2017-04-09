@@ -7,27 +7,30 @@ var frontendUtils = require('./frontend-utils');
 
 module.exports = function(app, config, base, serverUrl, router){
 
-  var appInfo = {
-    mainFile: config.mainFile,
-    title: config.title,
-    description: config.description,
-    image: config.image,
+  var appInfo = Object.assign(config, {
     serverUrl: serverUrl,
-    dev: config.dev,
     staticFolder: config.static,
     lang: 'en',
     base: base
-  };
+  });
 
-  function getRequest(link, cb) {
-    link = link.replace(config.path, '');
-    request(serverUrl + link, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        cb(JSON.parse(body || {}));
+  function getRequest(link, res) {
+    return new Promise((resolve, reject) => {
+      link = link.replace(config.path, '');
+      if (!link.startsWith('http')) {
+        link = serverUrl + link;
       }
-      else {
-        cb({});
-      }
+      request(link, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          resolve(JSON.parse(body));
+        }
+        else if (res) {
+          app.locals.clientError(res);
+        }
+        else {
+          reject();
+        }
+      });
     });
   }
 
@@ -45,7 +48,7 @@ module.exports = function(app, config, base, serverUrl, router){
 
   app.locals.clientError = function(res) {
     res.statusCode = 400;
-    res.render('error', {
+    res.render('http-code-tmpl', {
       code: res.statusCode,
       info: 'Bad Request',
       message: 'The server cannot process the request' + 
@@ -55,7 +58,7 @@ module.exports = function(app, config, base, serverUrl, router){
 
   app.locals.notFound = function(res) {
     res.statusCode = 404;
-    res.render('error', {
+    res.render('http-code-tmpl', {
       code: res.statusCode,
       info: 'Resource not found',
       message: 'The requested resource could not be found but may be' +

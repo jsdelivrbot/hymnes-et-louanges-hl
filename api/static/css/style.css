@@ -35,11 +35,7 @@ button {
   left: 0;
   pointer-events: none;
 }
-<<<<<<< HEAD
 .float-input-small input, .float-input-small textarea {
-=======
-.float-input-small input[type="text"], .float-input-small textarea {
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   width: 100%;
   padding: 0.77em;
   padding-right: 2.1em;
@@ -49,21 +45,13 @@ button {
   font-size: 0.7em;
   background: white;
 }
-<<<<<<< HEAD
 .float-input-small input ~ i, .float-input-small textarea ~ i {
-=======
-.float-input-small input[type="text"] ~ i, .float-input-small textarea ~ i {
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   color: #142132;
   right: 0;
   opacity: 0;
   cursor: pointer;
 }
-<<<<<<< HEAD
 .float-input-small input ~ span, .float-input-small textarea ~ span {
-=======
-.float-input-small input[type="text"] ~ span, .float-input-small textarea ~ span {
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   display: block;
   width: 0;
   height: 2px;
@@ -74,7 +62,6 @@ button {
   -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
   transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
 }
-<<<<<<< HEAD
 .float-input-small input:valid, .float-input-small textarea:valid {
   border: none;
 }
@@ -82,26 +69,13 @@ button {
   opacity: 1;
 }
 .float-input-small input:valid ~ label, .float-input-small textarea:valid ~ label {
-=======
-.float-input-small input[type="text"]:valid, .float-input-small textarea:valid {
-  border: none;
-}
-.float-input-small input[type="text"]:valid ~ i, .float-input-small textarea:valid ~ i {
-  opacity: 1;
-}
-.float-input-small input[type="text"]:valid ~ label, .float-input-small textarea:valid ~ label {
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   font-size: 0.53846em;
   color: #142132;
   top: -2.5em;
   -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
   transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
 }
-<<<<<<< HEAD
 .float-input-small input:valid ~ span, .float-input-small textarea:valid ~ span {
-=======
-.float-input-small input[type="text"]:valid ~ span, .float-input-small textarea:valid ~ span {
->>>>>>> 594a7b2409950a73c5f2590898f907f0413356f0
   width: 100%;
   -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);
   transition: all 0.3s cubic-bezier(0.2, 0, 0.03, 1);

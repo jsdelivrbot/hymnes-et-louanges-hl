@@ -19,7 +19,7 @@
 
     function azHandler(req, res) {
       var letter = req.params.letter || 'A';
-      request('/az/' + letter, function(data) {
+      request('/az/' + letter, res).then(data => {
         var tags = appInfo;
         tags.table = data;
         tags.table.selected = letter;
@@ -30,7 +30,7 @@
 
     function numberHandler(req, res) {
       var number = req.params.number || 1;
-      request('/number/' + number, function(data) {
+      request('/number/' + number, res).then(data =>{
         var tags = appInfo;
         tags.table = data;
         tags.table.selected = number;

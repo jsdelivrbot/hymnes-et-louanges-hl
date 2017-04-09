@@ -17,7 +17,7 @@
   /**
    * Exports function to initialize the API
    */
-  api.lib.exports.publicize(module, function(app) {
+  module.exports = function(app) {
     app.initializeApi(__dirname);
-  });
+  };
 })();

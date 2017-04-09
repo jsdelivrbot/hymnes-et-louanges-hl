@@ -9,7 +9,7 @@
 
     function handler(req, res) {
       var number = req.params.number || 1;
-      request('/chant/' + number, function(data) {
+      request('/chant/' + number, res).then(data => {
         if (data.title) {
           var tags = appInfo;
           tags.song = data;

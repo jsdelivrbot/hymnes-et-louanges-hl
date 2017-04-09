@@ -9,7 +9,7 @@
 
     function handler(req, res) {
       var number = req.params.number || 1;
-      request('/presentation/' + number, function(data) {
+      request('/presentation/' + number, res).then(data => {
         var tags = appInfo;
         tags.slides = data;
         tags.number = (data[0] || {}).number;

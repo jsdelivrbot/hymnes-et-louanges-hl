@@ -1,6 +1,6 @@
 {
   "name": "hymnes-et-louanges",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A virtual hymnbook use by french-speaking adventist churches. The application comes with intelligent search, and dymanic presentations for the songs in the hymnal.",
   "image": "https://wspecs.com/img/hl.jpg",
   "api": "http://api.wspecs.com/hl",
@@ -9,7 +9,6 @@
   "year": 2017,
   "devDependencies": {
     "fs": "latest",
-    "request": "latest",
     "basic-auth": "latest",
     "jsonwebtoken": "latest",
     "atob": "latest",
@@ -19,17 +18,14 @@
     "mongodb": "latest",
     "mongoose": "latest",
     "child_process": "latest",
-    "easyimage": "latest",
     "chalk": "latest",
-    "nodemailer": "latest",
-    "nodemailer-smtp-transport": "latest",
-    "randomstring": "latest",
     "ejs": "latest",
     "moment": "latest",
-    "html-to-text": "latest",
+    "request": "latest",
     "body-parser": "latest",
     "cookie-parser": "latest",
     "express": "latest",
-    "showdown": "latest"
+    "showdown": "latest",
+    "minimistprocess.argv.slice2": "latest"
   }
 }

@@ -1,5 +1,6 @@
 (function() {
   var express = require('express');
+  var args = require('minimist')(process.argv.slice(2))
   var app = express();
 
   function start(config, router) {
@@ -15,6 +16,9 @@
     else {
       config.port += 1;
       config.dev = true;
+    }
+    if (args.api) {
+      apiEndpoint = args.api !== 'dev' ? config.prod.api : config.dev.api;
     }
     require('./lib/frontend-config')(app, express, config, folder);
     require('./lib/REST')(app, config, base, apiEndpoint, router);

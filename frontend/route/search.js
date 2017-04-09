@@ -18,7 +18,7 @@
         res.redirect(root + '/chant/' + query);
         return;
       }
-      request('/search/' + query, function(data) {
+      request('/search/' + query, res).then(data => {
         if (data.length === 1) {
           res.redirect(root + '/chant/' + data[0].number);
         }
